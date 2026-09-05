@@ -1,0 +1,20 @@
+@if (gameService.game(); as game) {
+  <section class="scoreboard">
+    <h3>Scoreboard</h3>
+    <div class="tallies">
+      <div class="tally x">
+        <span class="label">X Wins</span>
+        <span class="value">{{ game.scoreboard.xWins }}</span>
+      </div>
+      <div class="tally o">
+        <span class="label">O Wins</span>
+        <span class="value">{{ game.scoreboard.oWins }}</span>
+      </div>
+      <div class="tally draw">
+        <span class="label">Draws</span>
+        <span class="value">{{ game.scoreboard.draws }}</span>
+      </div>
+    </div>
+    <button type="button" class="link-button" (click)="onResetScoreboard()">Reset Scoreboard</button>
+  </section>
+}

@@ -1,0 +1,62 @@
+.scoreboard {
+  h3 {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.tallies {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.tally {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.6rem 0.4rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  .label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  &.x .value {
+    color: #7dd3fc;
+  }
+
+  &.o .value {
+    color: #f472b6;
+  }
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
