@@ -29,6 +29,7 @@
         class="status-banner"
         [class.won]="game()?.status === 'Won'"
         [class.draw]="game()?.status === 'Draw'"
+        [class.thinking]="computerThinking()"
       >
         {{ statusMessage() }}
       </p>
@@ -36,10 +37,10 @@
       <app-game-board />
 
       <div class="controls">
-        <button type="button" class="secondary" [disabled]="!canUndo()" (click)="onUndo()">
+        <button type="button" class="secondary" [disabled]="!canUndo() || computerThinking()" (click)="onUndo()">
           Undo Last Move
         </button>
-        <button type="button" class="primary" (click)="onReset()">Reset Game</button>
+        <button type="button" class="primary" [disabled]="computerThinking()" (click)="onReset()">Reset Game</button>
       </div>
     </section>
 

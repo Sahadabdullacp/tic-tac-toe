@@ -16,12 +16,14 @@ export class App implements OnInit {
 
   readonly game = this.gameService.game;
   readonly errorMessage = this.gameService.errorMessage;
+  readonly computerThinking = this.gameService.computerThinking;
 
   readonly canUndo = computed(() => (this.game()?.history.length ?? 0) > 0 && this.game()?.status === 'InProgress');
 
   readonly statusMessage = computed(() => {
     const game = this.game();
     if (!game) return '';
+    if (this.computerThinking()) return 'Computer is thinking…';
     if (game.status === 'Won') return `Player ${game.winner} wins!`;
     if (game.status === 'Draw') return "It's a draw!";
     return `Player ${game.currentPlayer}'s turn`;

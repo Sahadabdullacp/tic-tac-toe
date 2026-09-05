@@ -12,6 +12,7 @@ export class GameBoardComponent {
   private readonly gameService = inject(GameService);
 
   readonly game = this.gameService.game;
+  readonly computerThinking = this.gameService.computerThinking;
   readonly cells = computed(() => this.game()?.board ?? Array(9).fill(null));
   readonly winningCells = computed(() => new Set(this.game()?.winningCells ?? []));
 
@@ -22,6 +23,7 @@ export class GameBoardComponent {
   isPlayable(index: number): boolean {
     const game = this.game();
     if (!game) return false;
+    if (this.computerThinking()) return false;
     return game.status === 'InProgress' && game.board[index] === null && !this.isComputerTurn(game.mode);
   }
 
