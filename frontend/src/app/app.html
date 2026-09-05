@@ -1,0 +1,51 @@
+<main class="app-shell">
+  <header class="app-header">
+    <h1>Tic Tac Toe</h1>
+    <div class="mode-toggle" role="group" aria-label="Game mode">
+      <button
+        type="button"
+        [class.active]="game()?.mode === 'TwoPlayer'"
+        (click)="onSelectMode('TwoPlayer')"
+      >
+        Two Player
+      </button>
+      <button
+        type="button"
+        [class.active]="game()?.mode === 'VsComputer'"
+        (click)="onSelectMode('VsComputer')"
+      >
+        Play Against Computer
+      </button>
+    </div>
+  </header>
+
+  @if (errorMessage(); as message) {
+    <p class="error-banner" role="alert">{{ message }}</p>
+  }
+
+  <div class="layout">
+    <section class="board-panel">
+      <p
+        class="status-banner"
+        [class.won]="game()?.status === 'Won'"
+        [class.draw]="game()?.status === 'Draw'"
+      >
+        {{ statusMessage() }}
+      </p>
+
+      <app-game-board />
+
+      <div class="controls">
+        <button type="button" class="secondary" [disabled]="!canUndo()" (click)="onUndo()">
+          Undo Last Move
+        </button>
+        <button type="button" class="primary" (click)="onReset()">Reset Game</button>
+      </div>
+    </section>
+
+    <aside class="side-panel">
+      <app-scoreboard-panel />
+      <app-move-history />
+    </aside>
+  </div>
+</main>
