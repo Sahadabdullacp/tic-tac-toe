@@ -5,6 +5,7 @@
       <button
         type="button"
         [class.active]="game()?.mode === 'TwoPlayer'"
+        [disabled]="computerThinking()"
         (click)="onSelectMode('TwoPlayer')"
       >
         Two Player
@@ -12,6 +13,7 @@
       <button
         type="button"
         [class.active]="game()?.mode === 'VsComputer'"
+        [disabled]="computerThinking()"
         (click)="onSelectMode('VsComputer')"
       >
         Play Against Computer

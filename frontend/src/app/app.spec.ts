@@ -118,4 +118,18 @@ describe('App', () => {
     req.flush(aGame({ mode: 'VsComputer' }));
     await fixture.whenStable();
   });
+
+  it('disables mode switching while the computer is thinking', async () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    httpMock.expectOne(`${environment.apiBaseUrl}/games`).flush(aGame({ mode: 'VsComputer' }));
+    await fixture.whenStable();
+
+    fixture.componentInstance.computerThinking.set(true);
+    fixture.detectChanges();
+
+    const modeButtons = fixture.nativeElement.querySelectorAll('.mode-toggle button');
+    expect(modeButtons[0].disabled).toBe(true);
+    expect(modeButtons[1].disabled).toBe(true);
+  });
 });
