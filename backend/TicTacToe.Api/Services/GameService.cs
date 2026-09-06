@@ -36,7 +36,11 @@ public class GameService(IGameRepository repository)
 
     public MoveResult Undo(Game game) => game.Undo();
 
-    public void ResetGame(Game game) => game.Reset();
+    public void ResetGame(Game game)
+    {
+        repository.Scoreboard.Forget(game);
+        game.Reset();
+    }
 
     public void ResetScoreboard() => repository.Scoreboard.Reset();
 }

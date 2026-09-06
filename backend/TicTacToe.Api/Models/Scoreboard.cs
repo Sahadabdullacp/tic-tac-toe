@@ -33,6 +33,8 @@ public class Scoreboard
         RecordResult(game.Status, game.Winner);
     }
 
+    public void Forget(Game game) => _recordedGameIds.Remove(game.Id);
+
     private static bool IsInProgress(Game game) => game.Status == GameStatus.InProgress;
     private bool AlreadyRecorded(Game game) => !_recordedGameIds.Add(game.Id);
 
@@ -41,5 +43,6 @@ public class Scoreboard
         XWins = 0;
         OWins = 0;
         Draws = 0;
+        _recordedGameIds.Clear();
     }
 }

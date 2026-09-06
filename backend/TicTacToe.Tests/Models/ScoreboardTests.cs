@@ -54,6 +54,22 @@ public class ScoreboardTests
     }
 
     [Fact]
+    public void Forget_AllowsResetGameToBeRecordedAgain()
+    {
+        var scoreboard = new Scoreboard();
+        var game = new Game(GameMode.TwoPlayer);
+        PlayRowWinForX(game);
+
+        scoreboard.RecordGameOnce(game);
+        scoreboard.Forget(game);
+        game.Reset();
+        PlayRowWinForX(game);
+        scoreboard.RecordGameOnce(game);
+
+        Assert.Equal(2, scoreboard.XWins);
+    }
+
+    [Fact]
     public void Reset_ClearsAllCounts()
     {
         var scoreboard = new Scoreboard();
@@ -64,5 +80,14 @@ public class ScoreboardTests
         Assert.Equal(0, scoreboard.XWins);
         Assert.Equal(0, scoreboard.OWins);
         Assert.Equal(0, scoreboard.Draws);
+    }
+
+    private static void PlayRowWinForX(Game game)
+    {
+        game.Move(Player.X, 0);
+        game.Move(Player.O, 3);
+        game.Move(Player.X, 1);
+        game.Move(Player.O, 4);
+        game.Move(Player.X, 2);
     }
 }
